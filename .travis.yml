@@ -2,3 +2,15 @@ language: ruby
 rvm:
  - 2.2
  - jruby
+language: python
+python:
+  - "2.7"
+install: "pip install -r requirements.txt"
+before_script:
+  - cp .env.example .env
+  - python manage.py migrate
+script:
+  - flake8 cmdbox
+  - coverage run manage.py test --settings=cmdbox.tests_settings
+after_success:
+  - coveralls
