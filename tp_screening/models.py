@@ -1,14 +1,17 @@
 from django.db import models
-from django.urls import reverse
-from smtplib import prompt
-from pip._internal.cmdoptions import verbose
+from edc_constants.choices import GENDER, YES_NO, YES_NO_NA, NORMAL_ABNORMAL
+from ..subject_screening_eligibility import SubjectScreeningEligibility
+from ..identifiers import ScreeningIdentifier
 
-eligibility_cls = SubjectScreeningEligibility
 
-identifier_cls = ScreeningIdentifier
+
 
 class tp_screening(SubjectIdentifierModelMixin, SiteModelMixin, BaseUuidModel):
     
+    eligibility_cls = SubjectScreeningEligibility
+
+    identifier_cls = ScreeningIdentifier
+
     age_in_years = models.IntegerField()
     
     gender = models.CharField(
