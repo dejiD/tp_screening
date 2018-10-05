@@ -1,16 +1,7 @@
 from django.conf import settings
 from django.contrib import admin
 
-from ..admin_site import tp_screening_admin
-from ..forms import SubjectScreeningForm
-from ..models import SubjectScreening
-from .modeladmin_mixins import ModelAdminMixin
-
-
-@admin.register(SubjectScreening, site=tp_screening_admin)
-class TPScreeningAdmin(ModelAdminMixin, admin.ModelAdmin):
-
-    form = SubjectScreeningForm
+class TPScreeningAdmin(admin.ModelAdmin):
 
     post_url_on_delete_name = settings.DASHBOARD_URL_NAMES.get(
         'screening_dashboard_url')
@@ -52,5 +43,6 @@ class TPScreeningAdmin(ModelAdminMixin, admin.ModelAdmin):
                 'voting',
                 'neighborhood_problems',
                 'neighborhood_problems_solved',)
-        })
+        }),
         
+admin.site.register(SubjectScreening,TPScreeningAdmin)

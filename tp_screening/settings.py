@@ -9,9 +9,11 @@ https://docs.djangoproject.com/en/1.11/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
+import django
 
 import os
-
+import sys
+APP_NAME = 'tp_screening'
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -28,7 +30,6 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -37,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'tp_screening.apps.AppConfig',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -118,3 +122,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+if 'test' in sys.argv:
+
+    class DisableMigrations:
+
+        def __contains__(self, item):
+            return True
+
+        def __getitem__(self, item):
+            return None
+
+    MIGRATION_MODULES = DisableMigrations()
+    PASSWORD_HASHERS = ('django.contrib.auth.hashers.MD5PasswordHasher', )
+    DEFAULT_FILE_STORAGE = 'inmemorystorage.InMemoryStorage'
+
