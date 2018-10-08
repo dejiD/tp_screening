@@ -1,2 +1,4 @@
 .project
 .pydevproject
+.DS_Store
+db.sqlite3

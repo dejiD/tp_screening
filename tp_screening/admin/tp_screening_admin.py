@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib import admin
 
+
 class TPScreeningAdmin(admin.ModelAdmin):
 
     post_url_on_delete_name = settings.DASHBOARD_URL_NAMES.get(
@@ -22,7 +23,6 @@ class TPScreeningAdmin(admin.ModelAdmin):
         'voting': admin.VERTICAL,
         'neighborhood_problems': admin.VERTICAL,
         'neighborhood_problems_solved': admin.VERTICAL,
-        
         }
 
     fieldsets = (
@@ -44,5 +44,5 @@ class TPScreeningAdmin(admin.ModelAdmin):
                 'neighborhood_problems',
                 'neighborhood_problems_solved',)
         }),
-        
-admin.site.register(SubjectScreening,TPScreeningAdmin)
+
+    admin.site.register(SubjectScreening,TPScreeningAdmin)

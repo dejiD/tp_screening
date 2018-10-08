@@ -1,20 +1,5 @@
-from edc_constants.constants import NORMAL, YES, NO
 
 from .eligibility import Eligibility
-
-
-def if_yes(value):
-    if value == NORMAL:
-        return True
-    return value == YES
-
-
-def if_no(value):
-    return value == NO
-
-
-def if_normal(value):
-    return value == NORMAL
 
 
 class SubjectScreeningEligibility:
@@ -26,10 +11,7 @@ class SubjectScreeningEligibility:
             allow_none=allow_none,
             age=model_obj.age_in_years,
             gender=model_obj.gender,
-            alt=model_obj.alt,
-        
-            consent_ability=if_yes(model_obj.consent_ability),
-            subject_screening=model_obj,
+            subject_screening=model_obj
         )
         self.eligible = eligibility_obj.eligible
         self.reasons_ineligible = eligibility_obj.reasons_ineligible

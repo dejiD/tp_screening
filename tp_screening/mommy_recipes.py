@@ -4,20 +4,20 @@ Created on 03 Oct 2018
 @author: Deji
 '''
 # from django.contrib.sites.models import Site
-from edc_base.utils import get_utcnow
 from edc_constants.constants import YES, MALE
 from faker import Faker
 from model_mommy.recipe import Recipe
 
-from .models import Subject_Screening
+from .models import SubjectScreening
+
 
 fake = Faker()
 
-subjectscreening = Recipe(
-    Subject_Screening,
+subject_screening = Recipe(
+    SubjectScreening,
     a_citizen=YES,
-    married_to_a_citizen=YES,
-    report_datetime=get_utcnow(),
+    not_a_citizen=YES,
+    marital_status=YES,
     gender=MALE,
     age_in_years=18,
-    literate=YES)
+    literacy=YES)

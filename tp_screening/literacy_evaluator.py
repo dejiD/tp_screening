@@ -5,6 +5,7 @@ Created on 04 Oct 2018
 '''
 from edc_constants.constants import YES, NO
 
+
 class LiteracyEvaluator:
     def __init__(self, literate=True, iliterate=True):
         self.eligible = False

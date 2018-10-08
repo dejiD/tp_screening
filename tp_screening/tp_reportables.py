@@ -4,9 +4,8 @@ from edc_reportable import ValueBoundryError
 from edc_reportable import AgeEvaluator
 from django.utils.timezone import localtime
 
-from tp_screening.choices import COUNTRY, MARITAL_STATUS
+from tp_screening.choices import COUNTRY
 from tp_screening.citizenship_evaluator import CitizenshipEvaluator
-
 
 
 class MyAgeEvaluator(AgeEvaluator):
@@ -37,10 +36,11 @@ class MyAgeEvaluator(AgeEvaluator):
 
 
 age_evaluator = MyAgeEvaluator(
+    age_higher_inclusive=True,
     age_lower=18,
     age_lower_inclusive=True)
 
 citizenship_evaluator = CitizenshipEvaluator(
-    citizen = COUNTRY,
-    citizenship_criteria = MARITAL_STATUS
-    )
+    COUNTRY=(COUNTRY, 'BOTSWANA'),
+    citizenship_criteria=('Married to a citizen'
+                          'and has a marriage certificate'))

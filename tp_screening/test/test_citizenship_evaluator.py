@@ -5,7 +5,7 @@ Created on 04 Oct 2018
 '''
 from django.test import TestCase
 from ..eligibility import CitizenshipEvaluator
-from ..choices import COUNTRY, MARRIED
+from ..choices import MARRIED
 
 
 class TestCitizenshipEvaluator(TestCase):

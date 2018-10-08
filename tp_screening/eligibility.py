@@ -12,10 +12,10 @@ from .literacy_evaluator import LiteracyEvaluator
 class EligibilityError(Exception):
     pass
 
+
 class Eligibility:
 
     """Eligible if all criteria evaluate True.
-
     Any key in `additional_criteria` has value True if eligible.
     """
     gender_evaluator_cls = GenderEvaluator
@@ -23,9 +23,7 @@ class Eligibility:
     citizenship_evaluator = CitizenshipEvaluator
     literacy_evaluator = LiteracyEvaluator
 
-
-    def __init__(self, age=None, gender=None,
-                 subject_screening=None, **additional_criteria):
+    def __init__(self, **additional_criteria):
         self.criteria = dict(**additional_criteria)
         print (self.criteria)
 

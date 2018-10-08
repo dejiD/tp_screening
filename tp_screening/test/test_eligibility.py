@@ -24,7 +24,7 @@ class TestEligibility(TestCase):
     def test_eligibility_ok(self):
         self.assertTrue(age_evaluator.eligible(18))
 
-    def test_eligibility_not_ok_by_age_only(self):
+    def test_eligibility_not_ok_by_age(self):
         self.evaluator_criteria.update(age=17)
         self.assertTrue(age_evaluator.eligible)
         self.assertTrue(age_evaluator.eligible, {'age': 'age<18.'})
