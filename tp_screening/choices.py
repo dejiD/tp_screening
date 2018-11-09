@@ -11,7 +11,8 @@ from .constants import (
     TEACHER, HEALTHCARE_WORKER, OTHER_PROFESSIONAL,
     SINGLE, MARRIED, DIVORCED, WIDOWED, HIV_AIDS, Schools,
     Sewer, Unemployment, Roads, Water, Other_specify, House, Malaria,
-    NO, NOT_APPLICABLE, YES, Occassional_CasualEmployment,
+    NO, MARRIAGE_CERTIFICATE, NOT_APPLICABLE, YES,
+    Occassional_CasualEmployment,
     Seasonal_Employment, Formal_Wage_Employment, Self_Employed_Agriculture,
     Self_employed_Making_Money, Level_one, Level_two, Level_three, Level_four,
     Level_five, Level_six, Literate_Witness, GAURDIAN_PRESENT)
@@ -27,6 +28,7 @@ ADDRESS = (
     (OTHER, _('Other')),
     (NO_ANSWER, _('No Answer')),
 )
+
 
 COUNTRY = (
     (BOTSWANA, _('BOTSWANA')),
@@ -44,6 +46,11 @@ GENDER = (
     (FEMALE, _('Female')),
     ('U', _('Undetermined')),
 )
+
+MINOR = (
+    (YES, 'YES'),
+    (NO, 'NO'),
+    )
 
 JOB_DESCRIPTION = (
     (FARMER, 'Farmer (own land)'),
@@ -81,7 +88,8 @@ JOB_INCOME = (
 )
 
 JOB_DETAILS = (
-    (Occassional_CasualEmployment, _('Occassional_CasualEmployment(piece_job)')),
+    (Occassional_CasualEmployment,
+     _('Occassional_CasualEmployment(piece_job)')),
     (Seasonal_Employment, 'Seasonal_Employment'),
     (Formal_Wage_Employment, 'Formal_Wage-Employment(full-time)'),
     (Formal_Wage_Employment, 'FormalWageEmployment(part-time)'),
@@ -98,6 +106,11 @@ MARITAL_STATUS = (
     (DIVORCED, 'Divorced'),
     (WIDOWED, 'Widowed'),
 )
+
+PROOF_OF_MARRIAGE = (
+    (MARRIAGE_CERTIFICATE, 'MARRIAGE CERTIFICATE'),
+    (NOT_APPLICABLE, 'Not applicable'),
+    )
 
 NEIGHBORHOOD_PROBLEMS = (
     (HIV_AIDS, 'HIV/AIDS'),
@@ -137,7 +150,7 @@ YES_NO = (
 YES_NO_DWTA = (
     (YES, _(YES)),
     (NO, _(NO)),
-    (DWTA, _('Don\'t want to answer')),
+    (DWTA, _('Do not want to answer')),
 )
 
 YES_NO_NA = (
@@ -149,13 +162,11 @@ YES_NO_NA = (
 YES_NO_NA_DWTA = (
     (YES, _(YES)),
     (NO, _(NO)),
-    (DWTA, _('Don\'t want to answer')),
+    (DWTA, _('Do not want to answer')),
     (NOT_APPLICABLE, 'Not applicable'),
 )
 
 YES_NO_MC_NA = (
     (YES, _(YES)),
     (NO, _(NO)),
-    ('MARRIAGE CERTIFICATE'),
-    ('Not applicable'),
 )

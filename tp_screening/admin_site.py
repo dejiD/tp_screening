@@ -4,7 +4,7 @@ from django.contrib.sites.shortcuts import get_current_site
 
 class AdminSite(DjangoAdminSite):
 
-    site_url = '/admin.url/'
+    site_url = '/admin/'
 
     def each_context(self, request):
         context = super().each_context(request)
@@ -18,4 +18,4 @@ class AdminSite(DjangoAdminSite):
         return context
 
 
-tp_screening_admin = AdminSite(name='admin.url')
+tp_screening_admin = AdminSite(name='tp_screening_admin')

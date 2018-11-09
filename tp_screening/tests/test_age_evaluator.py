@@ -1,9 +1,8 @@
-from django.test import TestCase, tag
+from django.test import TestCase
 
 from ..tp_reportables import age_evaluator
 
 
-@tag('1')
 class TestAgeEvaluator(TestCase):
 
     def test_eligibility_valid_age_in_years(self):

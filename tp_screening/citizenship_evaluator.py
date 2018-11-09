@@ -1,26 +1,24 @@
-'''
-Created on 28 Sep 2018
-
-@author: Deji
-'''
-from .choices import (COUNTRY, MARRIED)
+from edc_constants.constants import YES, NO
+from tp_screening.constants import NOT_APPLICABLE
 
 
 class CitizenshipEvaluator:
 
-    def __init__(self, **kwargs):
+    def __init__(self, citizenship=None,
+                 married_to_a_citizen=None, proof_of_marriage=None):
 
         self.eligible = False
         self.reasons_ineligible = None
-        if COUNTRY == 'BOTSWANA':
+        if citizenship == YES:
+            self.eligible = True
+        elif (citizenship == NO and married_to_a_citizen == YES
+              and proof_of_marriage == YES):
+            self.eligible = True
+        elif (citizenship == YES and married_to_a_citizen == NOT_APPLICABLE
+              and proof_of_marriage == NOT_APPLICABLE):
+            self.eligible = True
+        elif (citizenship == YES and married_to_a_citizen == NOT_APPLICABLE
+              and proof_of_marriage == NOT_APPLICABLE):
             self.eligible = True
         else:
             self.eligible = False
-        if MARRIED == 'Married to a Motswana' and 'Has A Marriage Certificate':
-            self.eligible = True
-        else:
-            self.eligible = False
-
-    def __str__(self, **kwargs):
-        self.eligible = False
-        self.reasons_ineligible = None

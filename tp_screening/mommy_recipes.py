@@ -1,23 +1,21 @@
-'''
-Created on 03 Oct 2018
-
-@author: Deji
-'''
 # from django.contrib.sites.models import Site
-from edc_constants.constants import YES, MALE
+from edc_constants.constants import YES
 from faker import Faker
 from model_mommy.recipe import Recipe
 
-from .models import SubjectScreening
+from tp_screening.models.subject_screening import SubjectScreening
 
 
 fake = Faker()
 
 subject_screening = Recipe(
     SubjectScreening,
-    a_citizen=YES,
-    not_a_citizen=YES,
-    marital_status=YES,
-    gender=MALE,
+    citizen_of_Botswana=YES,
+    married_to_a_citizen=YES,
+    proof_of_marriage=YES,
+    literacy_status=YES,
+    literate_witness=YES,
     age_in_years=18,
-    literacy=YES)
+    minor=YES,
+    gaurdian_present=YES,
+)
