@@ -55,7 +55,7 @@ class TestSubjectScreening(SiteTestCaseMixin, TestCase):
     def test_eligibility_minor_yes(self):
         subject_screening = mommy.make_recipe('tp_screening.subject_screening',
                                               minor=YES)
-        self.assertFalse(subject_screening.eligible)
+        self.assertTrue(subject_screening.eligible)
 
     def test_eligibility_literate_witness_yes(self):
         subject_screening = mommy.make_recipe('tp_screening.subject_screening',
@@ -65,4 +65,4 @@ class TestSubjectScreening(SiteTestCaseMixin, TestCase):
     def test_eligibility_literate_witness_no(self):
         subject_screening = mommy.make_recipe('tp_screening.subject_screening',
                                               literate_witness=NO)
-        self.assertFalse(subject_screening.eligible)
+        self.assertTrue(subject_screening.eligible)

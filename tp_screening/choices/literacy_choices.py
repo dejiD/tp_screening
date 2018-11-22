@@ -1,9 +1,11 @@
+from tp_screening.constants import YES, NO, NOT_APPLICABLE
+
 LITERACY_STATUS = (
-    ('LITERATE', 'literate'),
-    ('ILLETERATE', 'illeterate'),
+    (YES, 'literate'),
+    (NO, 'illiterate'),
 )
 LITERATE_WITNESS = (
-    ('YES', 'yes'),
-    ('NO', 'no'),
-    ('NA', 'not applicable')
+    (YES, 'yes'),
+    (NO, 'no'),
+    (NOT_APPLICABLE, 'not applicable')
 )

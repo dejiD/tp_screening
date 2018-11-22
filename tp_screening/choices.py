@@ -50,7 +50,7 @@ GENDER = (
 MINOR = (
     (YES, 'YES'),
     (NO, 'NO'),
-    )
+)
 
 JOB_DESCRIPTION = (
     (FARMER, 'Farmer (own land)'),
@@ -110,7 +110,7 @@ MARITAL_STATUS = (
 PROOF_OF_MARRIAGE = (
     (MARRIAGE_CERTIFICATE, 'MARRIAGE CERTIFICATE'),
     (NOT_APPLICABLE, 'Not applicable'),
-    )
+)
 
 NEIGHBORHOOD_PROBLEMS = (
     (HIV_AIDS, 'HIV/AIDS'),

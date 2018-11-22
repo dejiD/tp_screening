@@ -15,7 +15,6 @@ class TPScreeningAdmin(ModelAdminMixin, admin.ModelAdmin):
         'screening_dashboard_url')
 
     radio_fields = {
-        'age_in_years': admin.VERTICAL,
         'gender': admin.VERTICAL,
         'minor': admin.VERTICAL,
         'gaurdian_present': admin.VERTICAL,
@@ -23,12 +22,13 @@ class TPScreeningAdmin(ModelAdminMixin, admin.ModelAdmin):
         'marital_status': admin.VERTICAL,
         'married_to_a_citizen': admin.VERTICAL,
         'proof_of_marriage': admin.VERTICAL,
+        'literacy_status': admin.VERTICAL,
+        'literate_witness': admin.VERTICAL,
         'job_status': admin.VERTICAL,
         'job_details': admin.VERTICAL,
         'job_income': admin.VERTICAL,
-        'job_description': admin.VERTICAL,
-        'literacy_status': admin.VERTICAL,
-        'literate_witness': admin.VERTICAL,
+        'job_description': admin.VERTICAL
+
     }
 
     fieldsets = (
@@ -42,10 +42,11 @@ class TPScreeningAdmin(ModelAdminMixin, admin.ModelAdmin):
                 'marital_status',
                 'married_to_a_citizen',
                 'proof_of_marriage',
+                'literacy_status',
+                'literate_witness',
                 'job_status',
                 'job_details',
                 'job_income',
-                'job_description',
-                'literacy_status',
-                'literate_witness')
-        })),
+                'job_description'
+            )
+        }),)

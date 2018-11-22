@@ -7,7 +7,7 @@ from edc_identifier.model_mixins import NonUniqueSubjectIdentifierModelMixin
 from edc_base.utils import get_utcnow
 from ..subject_screening_eligibility import SubjectScreeningEligibility
 from ..identifiers import ScreeningIdentifier
-from tp_screening.choices.age_choices import AGE_IN_YEARS, GAURDIAN_PRESENT,\
+from tp_screening.choices.age_choices import GAURDIAN_PRESENT,\
     MINOR
 from tp_screening.choices.citizen_choices import CITIZEN_OF_BOTSWANA,\
     MARRIED_TO_A_CITIZEN, PROOF_OF_MARRIAGE
@@ -19,6 +19,9 @@ from tp_screening.choices.job_choices import JOB_DESCRIPTION, JOB_DETAILS, JOB_I
     JOB_STATUS
 from edc_base.model_mixins.base_uuid_model import BaseUuidModel
 from edc_base.sites.site_model_mixin import SiteModelMixin
+from uuid import uuid4
+from edc_base.model_managers import HistoricalRecords
+from edc_base.sites import CurrentSiteManager
 
 
 class SubjectScreeningManager(SearchSlugManager, models.Manager):
@@ -46,10 +49,23 @@ class SubjectIdentifierModelMixin(NonUniqueSubjectIdentifierModelMixin,
         abstract = True
 
 
-class SubjectScreening(SubjectIdentifierModelMixin, BaseUuidModel, SiteModelMixin):
+class SubjectScreening(SubjectIdentifierModelMixin, SiteModelMixin, BaseUuidModel):
     eligibility_cls = SubjectScreeningEligibility
 
     identifier_cls = ScreeningIdentifier
+
+    reference = models.UUIDField(
+        verbose_name='Reference',
+        unique=True,
+        default=uuid4,
+        editable=False)
+
+    screening_identifier = models.CharField(
+        verbose_name='Screening ID',
+        max_length=50,
+        blank=True,
+        unique=True,
+        editable=False)
 
     eligible = models.BooleanField(
         default=False,
@@ -65,10 +81,8 @@ class SubjectScreening(SubjectIdentifierModelMixin, BaseUuidModel, SiteModelMixi
         default=False,
         editable=False)
 
-    age_in_years = models.CharField(
+    age_in_years = models.IntegerField(
         verbose_name=("1. How old are you?"),
-        max_length=15,
-        choices=AGE_IN_YEARS,
         help_text="",
     )
 
@@ -99,12 +113,14 @@ class SubjectScreening(SubjectIdentifierModelMixin, BaseUuidModel, SiteModelMixi
         choices=CITIZEN_OF_BOTSWANA,
         help_text="",
     )
+
     marital_status = models.CharField(
         verbose_name=("6. Are you married?"),
-        max_length=35,
+        max_length=15,
         choices=MARITAL_STATUS,
         help_text="",
     )
+
     married_to_a_citizen = models.CharField(
         verbose_name=("7. Are you married to a Motswana?"),
         max_length=35,
@@ -119,22 +135,36 @@ class SubjectScreening(SubjectIdentifierModelMixin, BaseUuidModel, SiteModelMixi
         help_text="",
     )
 
+    literacy_status = models.CharField(
+        verbose_name=("9. Are you Literate?"),
+        max_length=15,
+        choices=LITERACY_STATUS,
+        help_text="",
+    )
+
+    literate_witness = models.CharField(
+        verbose_name=("10. Do you have a Literate witness?"),
+        max_length=35,
+        choices=LITERATE_WITNESS,
+        help_text="",
+    )
+
     job_status = models.CharField(
-        verbose_name=("9. Are you currently working?"),
+        verbose_name=("11. Are you currently working?"),
         max_length=35,
         choices=JOB_STATUS,
         help_text="",
     )
 
     job_details = models.CharField(
-        verbose_name=("10. In your main job what type of work do you do?"),
+        verbose_name=("12. In your main job what type of work do you do?"),
         max_length=35,
         choices=JOB_DETAILS,
         help_text="",
     )
 
     job_income = models.CharField(
-        verbose_name=("11. In the past month, how much money did you earn"
+        verbose_name=("13. In the past month, how much money did you earn"
                       "from work you did or received in payment?"),
         max_length=70,
         choices=JOB_INCOME,
@@ -142,7 +172,7 @@ class SubjectScreening(SubjectIdentifierModelMixin, BaseUuidModel, SiteModelMixi
     )
 
     job_description = models.CharField(
-        verbose_name=("12. Describe the work that you do or did in your most recent job."
+        verbose_name=("14. Describe the work that you do or did in your most recent job."
                       "If you have more than one profession,"
                       "choose the one you spend the most time doing"),
         max_length=70,
@@ -150,19 +180,14 @@ class SubjectScreening(SubjectIdentifierModelMixin, BaseUuidModel, SiteModelMixi
         help_text="",
     )
 
-    literacy_status = models.CharField(
-        verbose_name=("13. Are you Literate?"),
-        max_length=15,
-        choices=LITERACY_STATUS,
-        help_text="",
-    )
+    on_site = CurrentSiteManager()
 
-    literate_witness = models.CharField(
-        verbose_name=("14. Do you have a Literate witness?"),
-        max_length=35,
-        choices=LITERATE_WITNESS,
-        help_text="",
-    )
+    objects = SubjectScreeningManager()
+
+    history = HistoricalRecords()
+
+    def __str__(self):
+        return f'{self.screening_identifier} {self.gender} {self.age_in_years}'
 
     def save(self, *args, **kwargs):
         eligibility_obj = self.eligibility_cls(model_obj=self)
