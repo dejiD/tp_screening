@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'edc_facility.apps.AppConfig',
     'edc_timepoint.apps.AppConfig',
     'edc_lab.apps.AppConfig',
+    'edc_label.apps.AppConfig',
     'tp_screening.apps.AppConfig'
 ]
 
