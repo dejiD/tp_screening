@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'edc_device.apps.AppConfig',
     'edc_appointment.apps.AppConfig',
     'edc_facility.apps.AppConfig',
+    'edc_timepoint.apps.AppConfig',
     'tp_screening.apps.AppConfig',
 ]
 
