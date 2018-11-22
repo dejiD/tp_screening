@@ -41,11 +41,11 @@ INSTALLED_APPS = [
     'edc_base.apps.AppConfig',
     'edc_identifier.apps.AppConfig',
     'edc_device.apps.AppConfig',
-    'edc_appointment.apps.AppConfig',
-    'edc_facility.apps.AppConfig',
-    'edc_timepoint.apps.AppConfig',
-    'edc_lab.apps.AppConfig',
-    'edc_label.apps.AppConfig',
+    #     'edc_appointment.apps.AppConfig',
+    #     'edc_facility.apps.AppConfig',
+    #     'edc_timepoint.apps.AppConfig',
+    #     'edc_lab.apps.AppConfig',
+    #     'edc_label.apps.AppConfig',
     'tp_screening.apps.AppConfig'
 ]
 
